@@ -1,0 +1,5 @@
+Initial Create of data :
+    dotnet ef migrations add InitialCreate --project DataStore
+
+Update database:
+    dotnet ef database update --project DataStore
