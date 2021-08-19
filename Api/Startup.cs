@@ -1,6 +1,4 @@
 using System;
-using System.IO;
-using System.Reflection;
 using Application.Factories;
 using Autofac;
 using Microsoft.AspNetCore.Builder;
@@ -8,17 +6,17 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using RestApiTask.Extensions;
 using RestApiTask.Middleware;
 
 namespace RestApiTask
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
         
         public Startup(IConfiguration configuration)
         {
@@ -41,17 +39,7 @@ namespace RestApiTask
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "VismaRestApiTask", 
-                    Version = "v1"
-                });
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath, true);
-            });
+            services.AddSwaggerService();
         }
         
         public virtual void ConfigureContainer(ContainerBuilder builder)

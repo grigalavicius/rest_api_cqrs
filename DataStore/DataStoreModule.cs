@@ -1,8 +1,6 @@
 ﻿using Autofac;
 using Configuration;
-using DataStore.Factories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 
 namespace DataStore

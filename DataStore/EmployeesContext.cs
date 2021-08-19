@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using DataStore.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -71,25 +70,10 @@ namespace DataStore
             await base.SaveChangesAsync();
         }
 
-        // protected override void OnModelCreating(ModelBuilder modelBuilder)
-        // {
-        //     base.OnModelCreating(modelBuilder);
-        //
-        //     modelBuilder.Entity<Employee>(entity =>
-        //     {
-        //         entity.HasKey(employee => employee.Id);
-        //         entity.Property(employee => employee.FirstName).IsRequired().HasMaxLength(50);
-        //         entity.Property(employee => employee.LastName).IsRequired().HasMaxLength(50);
-        //         entity.Property(employee => employee.BirthDate).IsRequired();
-        //         entity.Property(employee => employee.EmploymentDate).IsRequired();
-        //         entity.Property(employee => employee.HomeAddress).IsRequired();
-        //         entity.Property(employee => employee.Salary).IsRequired();
-        //         entity.Property(employee => employee.Role).IsRequired();
-        //         entity.HasOne(employee => employee.Boss)
-        //             .WithMany()
-        //             .HasForeignKey(employee => employee.BossId);
-        //     });
-        // }
+        public async Task<bool> EmployeeWithCeoRoleExist()
+        {
+            return await Employees.AnyAsync(x => x.Role == Role.Ceo);
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -98,7 +82,7 @@ namespace DataStore
 #if DEBUG
             optionsBuilder.EnableSensitiveDataLogging();
             
-            if (loggerFactory != null)
+            if (loggerFactory is not null)
             {
                 optionsBuilder.UseLoggerFactory(loggerFactory);
             }

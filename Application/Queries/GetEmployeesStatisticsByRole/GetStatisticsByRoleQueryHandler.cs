@@ -8,7 +8,7 @@ using DataStore.Queries;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Application.Queries.GetStatisticsByRole
+namespace Application.Queries.GetEmployeesStatisticsByRole
 {
     public class GetStatisticsByRoleQueryHandler : IRequestHandler<GetStatisticsByRoleQuery, EmployeesStatisticsByRoleDto>
     {

@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Reflection;
 using Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
@@ -13,7 +12,6 @@ namespace DataStore.Factories
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory().Replace("DataStore", "Api"))
-                // .SetBasePath(Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location))
                 .AddJsonFile("appsettings.json")
                 .Build();
 

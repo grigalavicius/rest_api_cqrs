@@ -13,5 +13,6 @@ namespace DataStore
         void Rollback();
         void SaveChanges();
         Task SaveChangesAsync();
+        Task<bool> EmployeeWithCeoRoleExist();
     }
 }

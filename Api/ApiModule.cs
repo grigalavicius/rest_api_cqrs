@@ -1,11 +1,9 @@
 ﻿using Affecto.Mapping.AutoMapper.Autofac;
 using Application;
 using Autofac;
-using Configuration;
 using DataStore;
 using MediatR;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging.Console;
 
 namespace RestApiTask
 {
@@ -18,10 +16,6 @@ namespace RestApiTask
                 .AddEnvironmentVariables()
                 .Build();
             builder.RegisterInstance(configurationRoot).As<IConfigurationRoot>();
-            
-            // var loggerConfiguration = configurationRoot.GetSection("Logging").Initialize<LoggerConfiguration>();
-            // loggerConfiguration.TryValidateObject();
-            // configurationRoot.Bind(loggerConfiguration);
             
             builder.RegisterType<Mediator>()
                 .As<IMediator>()

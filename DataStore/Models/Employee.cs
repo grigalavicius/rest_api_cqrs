@@ -25,6 +25,7 @@ namespace DataStore.Models
         [Required]
         [Column(TypeName="date")]
         public DateTime EmploymentDate { get; set; }
+        
         public int? BossId { get; set; }
         
         [Required]

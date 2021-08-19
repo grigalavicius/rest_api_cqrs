@@ -15,10 +15,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Commands" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\DataStore\DataStore.csproj" />
     </ItemGroup>
 

@@ -2,7 +2,7 @@
 using DataStore.Models;
 using MediatR;
 
-namespace Application.Queries.GetStatisticsByRole
+namespace Application.Queries.GetEmployeesStatisticsByRole
 {
     public class GetStatisticsByRoleQuery : IRequest<EmployeesStatisticsByRoleDto>
     {

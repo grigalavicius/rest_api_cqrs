@@ -9,7 +9,7 @@ namespace Application.Validation.ModelValidators
         {
             RuleFor(query => query.Name)
                 .NotEmpty()
-                .Length(1, 50);
+                .MaximumLength(50);
             
             RuleFor(query => query.From)
                 .NotEmpty()

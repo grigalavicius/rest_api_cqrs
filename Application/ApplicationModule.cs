@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
+using Application.Commands.CreateEmployee;
+using Application.Commands.DeleteEmployee;
+using Application.Commands.UpdateEmployee;
+using Application.Commands.UpdateEmployeesSalary;
 using Application.Mappers;
 using Application.Queries.GetAllEmployees;
 using Application.Queries.GetEmployeeById;
+using Application.Queries.GetEmployeesByBossId;
 using Application.Queries.GetEmployeesByNameAndBirthdateInterval;
-using Application.Queries.GetStatisticsByRole;
-using Application.Validation.ModelValidators;
+using Application.Queries.GetEmployeesStatisticsByRole;
 using Autofac;
 using AutoMapper;
 
@@ -23,9 +27,14 @@ namespace Application
         private void RegisterRequestHandlers(ContainerBuilder builder)
         {
             builder.RegisterType<GetAllEmployeesQueryHandler>().AsImplementedInterfaces();
+            builder.RegisterType<GetEmployeesByBossIdQueryHandler>().AsImplementedInterfaces();
             builder.RegisterType<GetEmployeeByIdQueryHandler>().AsImplementedInterfaces();
             builder.RegisterType<GetEmployeesByNameAndBirthdateIntervalQueryHandler>().AsImplementedInterfaces();
             builder.RegisterType<GetStatisticsByRoleQueryHandler>().AsImplementedInterfaces();
+            builder.RegisterType<CreateEmployeeCommandHandler>().AsImplementedInterfaces();
+            builder.RegisterType<UpdateEmployeeCommandHandler>().AsImplementedInterfaces();
+            builder.RegisterType<UpdateEmployeesSalaryCommandHandler>().AsImplementedInterfaces();
+            builder.RegisterType<DeleteEmployeeCommandHandler>().AsImplementedInterfaces();
         }
         
         private static void RegisterMappers(ContainerBuilder builder)

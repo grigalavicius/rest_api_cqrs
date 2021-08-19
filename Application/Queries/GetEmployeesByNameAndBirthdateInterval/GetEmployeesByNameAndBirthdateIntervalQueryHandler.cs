@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Models;
-using Application.Validation;
 using Application.Validation.ModelValidators;
 using AutoMapper;
 using DataStore;

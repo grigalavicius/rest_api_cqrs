@@ -28,7 +28,7 @@ namespace RestApiTask.Middleware
                 var (errorStatusCode, errorMessage) = HandleException(e);
 
                 context.Response.ContentType = "application/json";
-                context.Response.StatusCode = (int)errorStatusCode;
+                context.Response.StatusCode = errorStatusCode;
 
                 var result = JsonConvert.SerializeObject(new { message = errorMessage });
 
@@ -36,17 +36,16 @@ namespace RestApiTask.Middleware
             }
         }
 
-        private static (HttpStatusCode statusCode, string errorMessage) HandleException(Exception exception)
+        private static (int, string errorMessage) HandleException(Exception exception)
         {
             switch (exception)
             {
                 case ValidationException _:
-                {
-                    return (HttpStatusCode.BadRequest, exception.Message);
-                }
+                    return ((int)HttpStatusCode.BadRequest, exception.Message);
                 default:
                 {
-                    return (HttpStatusCode.InternalServerError, "An unhandled error occurred. The request could not be processed.");
+                    var msg = exception?.InnerException is not null ? exception.InnerException.Message : exception?.Message;
+                    return ((int)HttpStatusCode.InternalServerError, msg ?? "An unhandled error occurred. The request could not be processed.");
                 }
             }
         }
