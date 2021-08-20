@@ -10,7 +10,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Affecto.Mapping.AutoMapper.Autofac" Version="4.2.0" />
         <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
         <PackageReference Include="AutoMapper" Version="10.1.1" />
         <PackageReference Include="MediatR" Version="9.0.0" />

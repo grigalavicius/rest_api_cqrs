@@ -185,8 +185,8 @@ namespace RestApiTask.Controllers
         [ProducesResponseType(typeof(SuccessfullyExecutedModel), 200)]
         [Produces("application/json")]
         [HttpDelete]
-        [Route(nameof(Delete))]
-        public async Task<ActionResult<SuccessfullyExecutedModel>> Delete([FromQuery] int employeeId)
+        [Route("Delete/{employeeId}")]
+        public async Task<ActionResult<SuccessfullyExecutedModel>> Delete(int employeeId)
         {
             var result = await _mediator.Send(new DeleteEmployeeCommand(employeeId));
             return Ok(result);

@@ -10,14 +10,10 @@ namespace Application.Validation.ModelValidators
             RuleFor(query => query.Name)
                 .NotEmpty()
                 .MaximumLength(50);
-            
-            RuleFor(query => query.From)
-                .NotEmpty()
-                .LessThanOrEqualTo(query => query.To);
-            
-            RuleFor(query => query.To)
-                .NotEmpty()
-                .GreaterThanOrEqualTo(query => query.From);
+
+            RuleFor(query => query)
+                .Must(query => query.From <= query.To)
+                .WithMessage(ValidationMessages.DateFromMustBeLessOrEqualToDateTo);
         }
     }
 }

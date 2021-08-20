@@ -1,5 +1,4 @@
-﻿using Affecto.Mapping.AutoMapper.Autofac;
-using Application;
+﻿using Application;
 using Autofac;
 using DataStore;
 using MediatR;
@@ -21,7 +20,6 @@ namespace RestApiTask
                 .As<IMediator>()
                 .InstancePerLifetimeScope();
 
-            builder.ConfigureAutoMapper();
             RegisterMappers(builder);
 
             builder.RegisterModule(new DataStoreModule(configurationRoot));

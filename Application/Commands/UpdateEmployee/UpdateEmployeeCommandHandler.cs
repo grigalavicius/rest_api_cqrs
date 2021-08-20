@@ -19,7 +19,7 @@ namespace Application.Commands.UpdateEmployee
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
         private readonly UpdateEmployeeCommandValidator _validator;
-        
+
         public UpdateEmployeeCommandHandler(IEmployeesContext dbContext, IMapper mapper, ILoggerFactory loggerFactory)
         {
             _dbContext = dbContext;
@@ -57,10 +57,12 @@ namespace Application.Commands.UpdateEmployee
             
             var employee = await GetEmployeeById(request.Id);
             if (employee is null)
-                throw new Exception($"Could not find employee by id: {request.Id}");
+            {
+                throw new Exception(string.Format(ValidationMessages.EmployeeDoesNotExistMessage, request.Id));
+            }
 
             if (employee.Role != Role.Ceo && request.Role == Role.Ceo && await _dbContext.EmployeeWithCeoRoleExist())
-                throw new Exception("Employee with CEO role already exist");
+                throw new Exception(ValidationMessages.EmployeeWithCeoRoleAlreadyExist);
         }
 
         private async Task<Employee> GetEmployeeById(int id)

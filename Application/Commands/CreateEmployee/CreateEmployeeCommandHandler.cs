@@ -75,7 +75,7 @@ namespace Application.Commands.CreateEmployee
         {
             await _validator.ValidateAndThrowAsync(request);
             if (request.Role == Role.Ceo && await _dbContext.EmployeeWithCeoRoleExist())
-                throw new Exception("Ceo role already exist.");
+                throw new Exception(ValidationMessages.EmployeeWithCeoRoleAlreadyExist);
         }
     }
 }

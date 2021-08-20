@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Application.Models
 {
@@ -21,7 +20,6 @@ namespace Application.Models
 
         public string Role { get; set; }
 
-        public EmployeeDto Boss { get; set; }
-        public IReadOnlyCollection<EmployeeDto> Employees { get; set; }
+        public int? BossId { get; set; }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
@@ -64,25 +63,7 @@ namespace Application.Factories
             {
                 Directory.CreateDirectory(loggingDir);
             }
-
-            var testFile = Path.Combine(loggingDir, "test.tt");
-            using (var fs = File.Create(testFile))
-            {
-                var info = new UTF8Encoding(true).GetBytes("test...");
-                fs.Write(info, 0, info.Length);
-            }
-
-            if (!File.Exists(testFile))
-            {
-                throw new Exception($"Unable to create file in {loggingDir}");
-            }
-
-            File.Delete(testFile);
-            if (File.Exists(testFile))
-            {
-                throw new Exception($"Unable to delete file from {loggingDir}");
-            }
-
+            
             return loggingDir;
         }
     }

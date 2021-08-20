@@ -9,12 +9,12 @@ namespace Application.Validation.ModelValidators
         {
             RuleFor(cmd => cmd.Id)
                 .GreaterThan(0)
-                .WithMessage("Id must be greater than zero");
+                .WithMessage(ValidationMessages.IdMustBeGreaterThanZero);
             
             RuleFor(cmd => cmd.Salary)
                 .NotNull()
                 .GreaterThan(0)
-                .WithMessage("Current salary must be non-negative");
+                .WithMessage(ValidationMessages.CurrentSalaryMustBeNonNegative);
         }
     }
 }

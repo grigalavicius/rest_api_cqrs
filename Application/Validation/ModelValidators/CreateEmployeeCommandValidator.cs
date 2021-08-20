@@ -7,6 +7,7 @@ namespace Application.Validation.ModelValidators
 {
     internal class CreateEmployeeCommandValidator : Validator<CreateEmployeeCommand>
     {
+
         public CreateEmployeeCommandValidator()
         {
             RuleFor(cmd => cmd.FirstName)
@@ -20,20 +21,21 @@ namespace Application.Validation.ModelValidators
 
             RuleFor(cmd => cmd)
                 .Must(cmd => cmd.FirstName != cmd.LastName)
-                .WithMessage("FirstName can not coincide with the LastName");
+                .WithMessage(ValidationMessages.NotEqualFirstAndLastNamesValidationMessage);
             
             RuleFor(cmd => cmd.BirthDate)
                 .NotEmpty()
                 .Must(birthDate => DateTime.Today >= birthDate.Date.AddYears(18))
-                .WithMessage("Employee must be at least 18 years old")
+                .WithMessage(ValidationMessages.EmployeeMustBeAtLeast18YearsOld)
                 .Must(birthDate => DateTime.Today <= birthDate.Date.AddYears(70))
-                .WithMessage("Employee must be not older than 70 years");
+                .WithMessage(ValidationMessages.EmployeeMustBeNotOlderThan70Years);
             
             RuleFor(cmd => cmd.EmploymentDate)
                 .NotEmpty()
                 .GreaterThan(new DateTime(2000,01,01))
+                .WithMessage(ValidationMessages.EmploymentDateCannotBeEarlierThanAndCannotBeFutureDate)
                 .LessThanOrEqualTo(DateTime.Today.AddDays(1).AddMinutes(-1))
-                .WithMessage("Employment date cannot be earlier than 2000-01-01 and cannot be future date");
+                .WithMessage(ValidationMessages.EmploymentDateCannotBeEarlierThanAndCannotBeFutureDate);
             
             RuleFor(cmd => cmd.HomeAddress)
                 .NotEmpty();
@@ -41,7 +43,7 @@ namespace Application.Validation.ModelValidators
             RuleFor(cmd => cmd.Salary)
                 .NotNull()
                 .GreaterThan(0)
-                .WithMessage("Current salary must be non-negative");
+                .WithMessage(ValidationMessages.CurrentSalaryMustBeNonNegative);
 
             RuleFor(cmd => cmd.Role)
                 .NotNull();
@@ -50,13 +52,13 @@ namespace Application.Validation.ModelValidators
                 {
                     RuleFor(cmd => cmd.BossId)
                         .Null()
-                        .WithMessage("BossId must be null");
+                        .WithMessage(ValidationMessages.BossIdMustBeNull);
                 })
                 .Otherwise(() =>
                 {
                     RuleFor(cmd => cmd.BossId)
                         .NotNull()
-                        .WithMessage("BossId must be not null");
+                        .WithMessage(ValidationMessages.BossIdMustBeNotNull);
                 });
         }
     }
