@@ -25,7 +25,7 @@ namespace DataStore
                 BossId = null,
                 HomeAddress = "Pakalnutės g. 1 - 12, Vilnius",
                 Salary = 3000,
-                Role = context.EmployeeWithCeoRoleExist().Result ? Role.Administrator : Role.Ceo
+                Role = context.Employees.Any(x => x.Role == Role.Ceo) ? Role.Administrator : Role.Ceo
             };
 
             var item2 = new Employee
