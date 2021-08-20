@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Api.Tests.Models;
 using Application;
 using Application.Models;
@@ -19,9 +18,9 @@ namespace Api.Tests.Employees
         }
 
         [Fact]
-        public async Task CreateEmployeeSuccessfully()
+        public void CreateEmployeeSuccessfully()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 var command = TestsMockData.MockCreateEmployeeDtoCmd();
                 var employee = await SendPostRequest<CreateEmployeeDtoCmd, EmployeeDto>(Url, command);
@@ -32,9 +31,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task CreateEmployeeWithSameFirstAndLastNameFail()
+        public void CreateEmployeeWithSameFirstAndLastNameFail()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 var command = TestsMockData.MockCreateEmployeeDtoCmd();
                 command.FirstName = "name";
@@ -48,9 +47,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task CreateEmployeeWithBossIdNullFail()
+        public void CreateEmployeeWithBossIdNullFail()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 var command = TestsMockData.MockCreateEmployeeDtoCmd();
                 command.BossId = null;
@@ -63,9 +62,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task CreateEmployeeWithCeoRoleFail()
+        public void CreateEmployeeWithCeoRoleFail()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 var command = TestsMockData.MockCreateEmployeeDtoCmd();
                 command.BossId = null;
@@ -79,9 +78,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task CreateEmployeeWithAgeValidationFail1()
+        public void CreateEmployeeWithAgeValidationFail1()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 var command = TestsMockData.MockCreateEmployeeDtoCmd();
                 command.BirthDate = DateTime.Today.AddYears(-18).AddDays(1);
@@ -93,9 +92,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task CreateEmployeeWithAgeValidationFail2()
+        public void CreateEmployeeWithAgeValidationFail2()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 var command = TestsMockData.MockCreateEmployeeDtoCmd();
                 command.BirthDate = DateTime.Today.AddYears(-70).AddDays(-1);
@@ -107,9 +106,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task CreateEmployeeWithEmploymentDateValidationFail1()
+        public void CreateEmployeeWithEmploymentDateValidationFail1()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 var command = TestsMockData.MockCreateEmployeeDtoCmd();
                 command.EmploymentDate = DateTime.Today.AddDays(1);
@@ -121,9 +120,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task CreateEmployeeWithEmploymentDateValidationFail2()
+        public void CreateEmployeeWithEmploymentDateValidationFail2()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 var command = TestsMockData.MockCreateEmployeeDtoCmd();
                 command.EmploymentDate = new DateTime(2000,1,1);
@@ -135,9 +134,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task CreateEmployeeWithSalaryFail()
+        public void CreateEmployeeWithSalaryFail()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 var command = TestsMockData.MockCreateEmployeeDtoCmd();
                 command.Salary = 0;

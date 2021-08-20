@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Application.Models;
 using FluentAssertions;
 using Xunit;
@@ -18,9 +17,9 @@ namespace Api.Tests.Employees
         
         
         [Fact]
-        public async Task GetEmployeeByNameAndBirthdateRangeReturn()
+        public void GetEmployeeByNameAndBirthdateRangeReturn()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 var name = "a";
                 var from = new DateTime(1980, 1, 1);

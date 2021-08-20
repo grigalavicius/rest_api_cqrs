@@ -64,13 +64,13 @@ namespace Api.Tests
             return await GetResponseContent<TResult>(response);
         }
         
-        protected async Task MockDbContextAndRunTest(Func<Task> action, List<Employee>? employees = null)
+        protected void MockDbContextAndRunTest(Func<Task> action, List<Employee>? employees = null)
         {
             var selectListContext = GetDbContext();
             ClearDbContext(selectListContext);
             MockDbContext(selectListContext, employees);
 
-            await action();
+            action();
         }
 
         private async Task<TResult> SendRequestWithContent<TCommand, TResult>(HttpMethod httpMethod, string url, TCommand command)

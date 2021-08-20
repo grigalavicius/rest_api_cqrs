@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Api.Tests.Models;
 using Application;
 using Application.Models;
@@ -19,9 +18,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task UpdateEmployeeSuccessfully()
+        public void UpdateEmployeeSuccessfully()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 const int employeeId = 5;
                 var command = TestsMockData.MockUpdateEmployeeDtoCmd();
@@ -40,9 +39,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task UpdateEmployeeDoesntExistFail()
+        public void UpdateEmployeeDoesntExistFail()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 const int employeeId = 666;
                 var command = TestsMockData.MockUpdateEmployeeDtoCmd();
@@ -54,9 +53,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task UpdateEmployeeIdMustBeGreaterThanZeroFail()
+        public void UpdateEmployeeIdMustBeGreaterThanZeroFail()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 const int employeeId = -1;
                 var command = TestsMockData.MockUpdateEmployeeDtoCmd();
@@ -68,9 +67,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task UpdateEmployeeWithCeoRoleFail()
+        public void UpdateEmployeeWithCeoRoleFail()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 const int employeeId = 5;
                 var command = TestsMockData.MockUpdateEmployeeDtoCmd();
@@ -84,9 +83,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task UpdateEmployeeWithFirstAndLastNameLengthFail()
+        public void UpdateEmployeeWithFirstAndLastNameLengthFail()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 const int employeeId = 5;
                 var command = TestsMockData.MockUpdateEmployeeDtoCmd();
@@ -100,9 +99,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task UpdateEmployeeWithEqualFirstAndLastNameFail()
+        public void UpdateEmployeeWithEqualFirstAndLastNameFail()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 const int employeeId = 5;
                 var command = TestsMockData.MockUpdateEmployeeDtoCmd();
@@ -115,9 +114,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task UpdateEmployeeWithAgeFail1()
+        public void UpdateEmployeeWithAgeFail1()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 const int employeeId = 5;
                 var command = TestsMockData.MockUpdateEmployeeDtoCmd();
@@ -130,9 +129,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task UpdateEmployeeWithAgeFail2()
+        public void UpdateEmployeeWithAgeFail2()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 const int employeeId = 5;
                 var command = TestsMockData.MockUpdateEmployeeDtoCmd();
@@ -145,9 +144,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task UpdateEmployeeWithEmploymentDateValidationFail1()
+        public void UpdateEmployeeWithEmploymentDateValidationFail1()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 const int employeeId = 5;
                 var command = TestsMockData.MockUpdateEmployeeDtoCmd();
@@ -160,9 +159,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task UpdateEmployeeWithEmploymentDateValidationFail2()
+        public void UpdateEmployeeWithEmploymentDateValidationFail2()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 const int employeeId = 5;
                 var command = TestsMockData.MockUpdateEmployeeDtoCmd();
@@ -175,9 +174,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task UpdateEmployeeWithSalaryFail()
+        public void UpdateEmployeeWithSalaryFail()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 const int employeeId = 5;
                 var command = TestsMockData.MockUpdateEmployeeDtoCmd();

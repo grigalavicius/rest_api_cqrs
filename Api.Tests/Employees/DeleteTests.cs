@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Application.Models;
+﻿using Application.Models;
 using FluentAssertions;
 using Xunit;
 
@@ -14,9 +13,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task DeleteEmployeesSuccessfully()
+        public void DeleteEmployeesSuccessfully()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 const int employeeId = 5;
                 var response = await SendDeleteRequest<SuccessfullyExecutedModel>(Url + employeeId);

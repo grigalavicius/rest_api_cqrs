@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Application.Models;
+﻿using Application.Models;
 using DataStore.Models;
 using FluentAssertions;
 using Xunit;
@@ -15,9 +14,9 @@ namespace Api.Tests.Employees
         }
 
         [Fact]
-        public async Task GetStatisticsByRoleReturn()
+        public void GetStatisticsByRoleReturn()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 var role = Role.Waiter;
                 var employeeStatisticsByRole = await SendGetRequest<EmployeesStatisticsByRoleDto>($"{Url}{role}");

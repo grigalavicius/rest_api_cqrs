@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Application.Models;
 using FluentAssertions;
 using Xunit;
@@ -16,9 +15,9 @@ namespace Api.Tests.Employees
         }
 
         [Fact]
-        public async Task GetEmployeeByIdReturn()
+        public void GetEmployeeByIdReturn()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 const int employeeId = 6;
                 var employeeDto = await SendGetRequest<EmployeeDto>($"{Url}{employeeId}");

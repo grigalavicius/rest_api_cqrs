@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Api.Tests.Models;
+﻿using Api.Tests.Models;
 using Application;
 using Application.Models;
 using FluentAssertions;
@@ -17,9 +16,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task UpdateEmployeesSalarySuccessfully()
+        public void UpdateEmployeesSalarySuccessfully()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 const int employeeId = 5;
                 var command = TestsMockData.MockUpdateEmployeesSalaryDtoCmd((decimal)1111.1);
@@ -31,9 +30,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task UpdateEmployeesSalaryWithNegativeNumberFail()
+        public void UpdateEmployeesSalaryWithNegativeNumberFail()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 const int employeeId = 5;
                 var command = TestsMockData.MockUpdateEmployeesSalaryDtoCmd(-10);
@@ -45,9 +44,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task UpdateEmployeesSalaryWithZeroFail()
+        public void UpdateEmployeesSalaryWithZeroFail()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 const int employeeId = 5;
                 var command = TestsMockData.MockUpdateEmployeesSalaryDtoCmd(0);

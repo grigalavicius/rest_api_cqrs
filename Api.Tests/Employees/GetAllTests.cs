@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using Application.Models;
 using FluentAssertions;
 using Xunit;
@@ -15,9 +14,9 @@ namespace Api.Tests.Employees
         }
         
         [Fact]
-        public async Task GetAllEmployeesReturn()
+        public void GetAllEmployeesReturn()
         {
-            await MockDbContextAndRunTest(async () =>
+            MockDbContextAndRunTest(async () =>
             {
                 var employees = await SendGetRequest<IReadOnlyCollection<EmployeeDto>>(Url);
 
