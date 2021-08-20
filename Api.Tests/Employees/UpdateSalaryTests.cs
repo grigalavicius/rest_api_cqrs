@@ -1,5 +1,4 @@
-﻿using Api.Tests.Models;
-using Application;
+﻿using Application;
 using Application.Models;
 using FluentAssertions;
 using RestApiTask.Commands;

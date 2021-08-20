@@ -1,5 +1,4 @@
 ﻿using System;
-using Api.Tests.Models;
 using Application;
 using Application.Models;
 using DataStore.Models;

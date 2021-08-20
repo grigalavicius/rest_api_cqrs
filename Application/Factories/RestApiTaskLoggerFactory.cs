@@ -13,7 +13,6 @@ namespace Application.Factories
         public static ILoggerFactory Create(IConfiguration configuration)
         {
             var loggingConfig = configuration.GetSection("Logging");
-            var wipeLogBeforeStart = loggingConfig.GetSection("WipeLogBeforeStart")?.Value?.ToLower() == "true";
             var loggerFactory = LoggerFactory.Create(builder =>
             {
                 builder.AddConfiguration(loggingConfig);
@@ -28,16 +27,6 @@ namespace Application.Factories
             var fileName = Assembly.GetCallingAssembly().GetName().Name?.Replace('.', '_');
 
             var loggingDir = CanCreateLogFiles(configuration);
-            if (wipeLogBeforeStart)
-            {
-                var date = DateTime.Now.ToString("yyyyMMdd");
-                var fileToDelete = $"{loggingDir}\\{fileName}-{date}.txt";
-                fileToDelete = Path.Combine(Directory.GetCurrentDirectory(), fileToDelete);
-                if (File.Exists(fileToDelete))
-                {
-                    File.Delete(fileToDelete);
-                }
-            }
 
             var filePath = Path.Combine(loggingDir, $"{fileName}.txt");
 

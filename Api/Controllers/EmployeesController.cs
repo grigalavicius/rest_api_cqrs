@@ -34,6 +34,7 @@ namespace RestApiTask.Controllers
         /// Get a list of all existing employees
         /// </summary>
         [ProducesResponseType(typeof(IEnumerable<EmployeeDto>), 200)]
+        [ProducesResponseType(typeof(ErrorModel), 500)]
         [Produces("application/json")]
         [HttpGet]
         [Route(nameof(GetAll))]
@@ -49,6 +50,7 @@ namespace RestApiTask.Controllers
         /// Get a list of all employees by boss id
         /// </summary>
         [ProducesResponseType(typeof(IEnumerable<EmployeeDto>), 200)]
+        [ProducesResponseType(typeof(ErrorModel), 500)]
         [Produces("application/json")]
         [HttpGet]
         [Route(nameof(GetByBossId))]
@@ -64,6 +66,7 @@ namespace RestApiTask.Controllers
         /// Get an employee by its id
         /// </summary>
         [ProducesResponseType(typeof(EmployeeDto), 200)]
+        [ProducesResponseType(typeof(ErrorModel), 500)]
         [Produces("application/json")]
         [HttpGet]
         [Route(nameof(GetById))]
@@ -79,6 +82,7 @@ namespace RestApiTask.Controllers
         /// Search for employees by name and birthdate interval
         /// </summary>
         [ProducesResponseType(typeof(IEnumerable<EmployeeDto>), 200)]
+        [ProducesResponseType(typeof(ErrorModel), 500)]
         [Produces("application/json")]
         [HttpGet]
         [Route(nameof(GetByNameAndBirthdateInterval))]
@@ -94,6 +98,7 @@ namespace RestApiTask.Controllers
         /// Getting employee count and average salary for particular Role
         /// </summary>
         [ProducesResponseType(typeof(EmployeesStatisticsByRoleDto), 200)]
+        [ProducesResponseType(typeof(ErrorModel), 500)]
         [Produces("application/json")]
         [HttpGet]
         [Route(nameof(GetStatisticsByRole))]
@@ -112,6 +117,7 @@ namespace RestApiTask.Controllers
         /// Adding new employee
         /// </summary>
         [ProducesResponseType(typeof(EmployeeDto), 200)]
+        [ProducesResponseType(typeof(ErrorModel), 500)]
         [Produces("application/json")]
         [HttpPost]
         [Route(nameof(Create))]
@@ -140,6 +146,7 @@ namespace RestApiTask.Controllers
         /// <param name="command">Employee update command</param>
         /// <returns></returns>
         [ProducesResponseType(typeof(EmployeeDto), 200)]
+        [ProducesResponseType(typeof(ErrorModel), 500)]
         [Produces("application/json")]
         [HttpPut]
         [Route(nameof(Update))]
@@ -168,6 +175,7 @@ namespace RestApiTask.Controllers
         /// <param name="command">Employee salary update command</param>
         /// <returns></returns>
         [ProducesResponseType(typeof(SuccessfullyExecutedModel), 200)]
+        [ProducesResponseType(typeof(ErrorModel), 500)]
         [Produces("application/json")]
         [HttpPut]
         [Route(nameof(UpdateSalary))]
@@ -183,6 +191,7 @@ namespace RestApiTask.Controllers
         /// <param name="employeeId"></param>
         /// <returns></returns>
         [ProducesResponseType(typeof(SuccessfullyExecutedModel), 200)]
+        [ProducesResponseType(typeof(ErrorModel), 500)]
         [Produces("application/json")]
         [HttpDelete]
         [Route("Delete/{employeeId}")]

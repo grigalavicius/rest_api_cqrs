@@ -1,4 +1,4 @@
-﻿namespace Api.Tests.Models
+﻿namespace Application.Models
 {
     public class ErrorModel
     {
