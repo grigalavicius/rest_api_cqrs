@@ -74,7 +74,7 @@ namespace Application.Commands.CreateEmployee
         private async Task Validate(CreateEmployeeCommand request)
         {
             await _validator.ValidateAndThrowAsync(request);
-            var doesCeoRoleExistQuery = new DoesEmployeeWithCeoRoleAlreadyExistQuery(_dbContext.Employees);
+            var doesCeoRoleExistQuery = new EmployeeWithCeoRoleAlreadyExistQuery(_dbContext.Employees);
             var ceoRoleExist = await doesCeoRoleExistQuery.Execute();
 
             if (request.Role == Role.Ceo && ceoRoleExist)

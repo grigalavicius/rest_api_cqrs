@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataStore.Queries
 {
-    public class DoesEmployeeWithCeoRoleAlreadyExistQuery
+    public class EmployeeWithCeoRoleAlreadyExistQuery
     {
         private readonly IQueryable<Employee> _employeesDb;
 
-        public DoesEmployeeWithCeoRoleAlreadyExistQuery(IQueryable<Employee> employeesDb)
+        public EmployeeWithCeoRoleAlreadyExistQuery(IQueryable<Employee> employeesDb)
         {
             _employeesDb = employeesDb;
         }

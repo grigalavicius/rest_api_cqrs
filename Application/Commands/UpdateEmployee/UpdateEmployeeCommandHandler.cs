@@ -61,7 +61,7 @@ namespace Application.Commands.UpdateEmployee
                 throw new Exception(string.Format(ValidationMessages.EmployeeDoesNotExistMessage, request.Id));
             }
 
-            var doesCeoRoleExistQuery = new DoesEmployeeWithCeoRoleAlreadyExistQuery(_dbContext.Employees);
+            var doesCeoRoleExistQuery = new EmployeeWithCeoRoleAlreadyExistQuery(_dbContext.Employees);
             var ceoRoleExist = await doesCeoRoleExistQuery.Execute();
             
             if (employee.Role != Role.Ceo && request.Role == Role.Ceo && ceoRoleExist)
