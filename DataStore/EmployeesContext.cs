@@ -70,11 +70,6 @@ namespace DataStore
             await base.SaveChangesAsync();
         }
 
-        public async Task<bool> EmployeeWithCeoRoleExist()
-        {
-            return await Employees.AnyAsync(x => x.Role == Role.Ceo);
-        }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
