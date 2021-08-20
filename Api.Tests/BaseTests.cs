@@ -40,36 +40,40 @@ namespace Api.Tests
             _testServerClient.Dispose();
         }
 
-        public string GetFullUrl(string url)
-        {
-            return _controllerName + "/" + url.TrimStart('/');
-        }
-
-        public async Task<TResult> SendGetRequest<TResult>(string url)
+        protected async Task<TResult> SendGetRequest<TResult>(string url)
         {
             var message = GetHttpRequestMessageWithHeaders(HttpMethod.Get, url);
             var response = await SendRequest(message);
             return await GetResponseContent<TResult>(response) ?? default!;
         }
 
-        public async Task<TResult> SendPostRequest<TCommand, TResult>(string url, TCommand command)
+        protected async Task<TResult> SendPostRequest<TCommand, TResult>(string url, TCommand command)
         {
             return await SendRequestWithContent<TCommand, TResult>(HttpMethod.Post, url, command);
         }
 
-        public async Task<TResult> SendPutRequest<TCommand, TResult>(string url, TCommand command)
+        protected async Task<TResult> SendPutRequest<TCommand, TResult>(string url, TCommand command)
         {
             return await SendRequestWithContent<TCommand, TResult>(HttpMethod.Put, url, command);
         }
 
-        public async Task<TResult> SendDeleteRequest<TResult>(string url)
+        protected async Task<TResult> SendDeleteRequest<TResult>(string url)
         {
             var message = GetHttpRequestMessageWithHeaders(HttpMethod.Delete, url);
             var response = await SendRequest(message);
             return await GetResponseContent<TResult>(response);
         }
+        
+        protected async Task MockDbContextAndRunTest(Func<Task> action, List<Employee>? employees = null)
+        {
+            var selectListContext = GetDbContext();
+            ClearDbContext(selectListContext);
+            MockDbContext(selectListContext, employees);
 
-        public async Task<TResult> SendRequestWithContent<TCommand, TResult>(HttpMethod httpMethod, string url, TCommand command)
+            await action();
+        }
+
+        private async Task<TResult> SendRequestWithContent<TCommand, TResult>(HttpMethod httpMethod, string url, TCommand command)
         {
             var json = JsonConvert.SerializeObject(command);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
@@ -82,16 +86,7 @@ namespace Api.Tests
             return result;
         }
 
-        public async Task MockDbContextAndRunTest(Func<Task> action, List<Employee>? employees = null)
-        {
-            var selectListContext = GetDbContext();
-            ClearDbContext(selectListContext);
-            MockDbContext(selectListContext, employees);
-
-            await action();
-        }
-
-        protected IEmployeesContext GetDbContext()
+        private IEmployeesContext GetDbContext()
         {
             if (_webApplicationFactory.Server.Services.GetService(typeof(IEmployeesContext)) is not IEmployeesContext employeesDbContext)
             {
@@ -120,10 +115,6 @@ namespace Api.Tests
         private HttpRequestMessage GetHttpRequestMessageWithHeaders(HttpMethod httpMethod, string url)
         {
             var message = new HttpRequestMessage(httpMethod, GetFullUrl(url));
-
-            // message.Headers.Add("correlation-id", Guid.Empty.ToString("D"));
-            // message.Headers.Add("caller-id", Guid.Empty.ToString("D"));
-
             return message;
         }
 
@@ -182,6 +173,11 @@ namespace Api.Tests
             }
 
             return JsonConvert.DeserializeObject<T>(result);
+        }
+
+        private string GetFullUrl(string url)
+        {
+            return _controllerName + "/" + url.TrimStart('/');
         }
     }
 }
